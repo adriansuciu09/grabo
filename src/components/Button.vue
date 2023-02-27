@@ -1,5 +1,5 @@
 <template>
-    <button @click ="onClick()" class="btn">Add Task</button>
+    <button @click ="onClick()" class="btn">Termin hinzufügen</button>
 </template>
 
 <script>
