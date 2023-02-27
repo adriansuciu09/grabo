@@ -1,5 +1,6 @@
 <template>
 <Header />
+<AddTask @add-task="addTask"/>
 <div class = "padding">
 </div>
 <TasksArray @delete-task="deleteTask" :tasks="tasks"/>
@@ -8,12 +9,14 @@
 <script>
 import Header from './components/Header.vue'
 import TasksArray from './components/TasksArray.vue'
+import AddTask from './components/AddTask.vue'
 
 export default {
   name: 'App',
   components: {
     Header,
-    TasksArray
+    TasksArray,
+    AddTask
   },
   data() {
     return {
@@ -23,13 +26,16 @@ export default {
   methods: {
     deleteTask(id){
       this.tasks = this.tasks.filter((task) =>task.id !== id)
+    },
+    addTask(task){
+      this.tasks = [...this.tasks, task]
     }
   },
   created(){
     this.tasks= [
-      {id: 1, text: 'Termin 1', day: 'Montag'},
-      {id: 2, text: 'Termin 2', day: 'Dienstag'},
-      {id: 3, text: 'Termin 3', day: 'Mittwoch'},
+      {id: 1, text: 'Termin 1', time: 'Montag'},
+      {id: 2, text: 'Termin 2', time: 'Dienstag'},
+      {id: 3, text: 'Termin 3', time: 'Mittwoch'},
     ]
   }
 }
