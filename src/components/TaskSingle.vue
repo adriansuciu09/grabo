@@ -1,6 +1,6 @@
 <template>
 <div class="task">
-<h3>{{task.text}}</h3>
+<h3>{{task.text}} </h3>
 <p> {{task.day}}</p>
 <i @click="onDelete(task.id)" class = "fas fa-times"></i>
 </div>
@@ -14,7 +14,8 @@
     },
     methods: {
         onDelete(id){
-            this.$emit('delete', id)
+            console.log(id)
+            this.$emit('delete-task',id)
         },
     }
     }
