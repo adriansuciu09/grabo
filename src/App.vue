@@ -1,12 +1,14 @@
 <template>
 <Header />
-<AddTask @add-task="addTask"/>
+<Button @click="showAddTask = !showAddTask" />
+<AddTask v-if="showAddTask" @add-task="addTask" @task-saved="showAddTask=false"/>
 <div class = "padding">
 </div>
 <TasksArray @delete-task="deleteTask" :tasks="tasks"/>
 </template>
 
 <script>
+import Button from './components/Button.vue'
 import Header from './components/Header.vue'
 import TasksArray from './components/TasksArray.vue'
 import AddTask from './components/AddTask.vue'
@@ -14,13 +16,16 @@ import AddTask from './components/AddTask.vue'
 export default {
   name: 'App',
   components: {
+    Button,
     Header,
     TasksArray,
     AddTask
   },
   data() {
     return {
-      tasks: []
+      tasks: [],
+      showAddTask: false,
+
     }
   },
   methods: {
@@ -28,7 +33,8 @@ export default {
       this.tasks = this.tasks.filter((task) =>task.id !== id)
     },
     addTask(task){
-      this.tasks = [...this.tasks, task]
+      this.tasks = [...this.tasks, task],
+      this.showAddTask = false
     }
   },
   created(){

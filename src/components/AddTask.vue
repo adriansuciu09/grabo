@@ -42,6 +42,7 @@ export default {
             console.log(newTask)
 
             this.$emit('add-task', newTask)
+            this.$emit('task-saved')
             this.text = ''
             this.time = ''
         }
