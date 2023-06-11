@@ -1,4 +1,15 @@
-# grabo
+# Terminplaner 
+
+## Groupmembers
+- Adrian Suciu (35602)
+- Emircan Tutar (35606)
+- Jonathan Wekesser (35483)
+ 
+## REST-API
+- Open-Meteo (https://open-meteo.com/)
+ 
+## AI support
+- ChatGPT (https://chat.openai.com/)
 
 ## Project setup
 ```

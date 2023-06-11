@@ -1,7 +1,8 @@
 <template>
 <div class="task">
 <h3>{{task.text}} </h3>
-<p> {{task.time}}</p>
+<p>{{task.date}} </p>
+<p>{{task.time}} </p>
 <i @click="onDelete(task.id)" class = "fas fa-times"></i>
 </div>
 </template>
@@ -28,8 +29,8 @@
     display: flex;
     justify-content: space-between;
     background-color: #f0f0f0;
-    margin-left: 150px;
-    margin-right: 150px;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
     

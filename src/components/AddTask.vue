@@ -5,10 +5,21 @@
             <input type="text" v-model="text" name="text" placeholder="Termin hinzufügen"/>
         </div>
         <div class = "form-control">
-            <label>Tag und Uhrzeit: </label>
-            <input type="text" v-model="time" name="time" placeholder="Tag und Uhrzeit hinzufügen"/>
+          <label>Datum: </label>
+          <input type="date" v-model="date" name="date"/>
         </div>
-        <input type = "submit" value="Termin speichern" class="btn btn-block"/>
+        <div class = "form-control">
+          <label>Uhrzeit: </label>
+          <input type="time" v-model="time" name="time"/>
+           <br>
+          <label>Ganztägig:</label>
+          <input type="checkbox" v-model="fullday" name="fullday">
+        </div>
+        <div class = "form-control">
+            <label>Beschreibung: </label>
+            <input type="text" v-model="description" name="description" placeholder="Beschreibung hinzufügen">
+        </div>
+      <input type = "submit" value="Termin speichern" class="btn btn-block"/>
     </form>
 </template>
 
@@ -19,7 +30,9 @@ export default {
     data() {
         return {
             text: '',
-            time: ''
+            date: '',
+            time: '',
+            description: ''
         }
     },
     methods:{
@@ -29,16 +42,23 @@ export default {
                 alert('Bitte Termin eingeben')
                 return
             }
-            if(!this.time){
-                alert('Bitte Tag und Uhrzeit eingeben')
+            if (!this.date){
+              alert('Bitte Datum eingeben')
+              return
+            }
+            if(!this.time && !this.fullday){
+                alert('Bitte Uhrzeit eingeben')
                 return
             }
-            const newTask = {
+            else if(!this.time && this.fullday){
+              this.time = "Ganztägig"
+            }
+          const newTask = {
                 id: Math.floor(Math.random()*10000),
                 text: this.text,
                 time: this.time
             }
-            
+
             console.log(newTask)
 
             this.$emit('add-task', newTask)
@@ -49,3 +69,14 @@ export default {
     }
 }
 </script>
+<style>
+form {
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+</style>
