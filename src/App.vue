@@ -4,7 +4,7 @@
 <AddTask v-if="showAddTask" @add-task="addTask" @task-saved="showAddTask=false"/>
 <div class = "padding">
 </div>
-<TasksArray @delete-task="deleteTask" :tasks="tasks"/>
+<TasksArray @delete-task="deleteTask" @updateWeather="getWeather" :tasks="tasks"/>
 </template>
 
 <script>
@@ -12,6 +12,7 @@ import Button from './components/Button.vue'
 import Header from './components/Header.vue'
 import TasksArray from './components/TasksArray.vue'
 import AddTask from './components/AddTask.vue'
+import axios from "axios";
 
 export default {
   name: 'App',
@@ -33,15 +34,42 @@ export default {
       this.tasks = this.tasks.filter((task) =>task.id !== id)
     },
     addTask(task){
-      this.tasks = [...this.tasks, task],
+      this.tasks = [...this.tasks, task]
       this.showAddTask = false
-    }
+    },
+    getWeather(task){
+      console.log("getWeather" + task.id);
+      axios.get(`https://api.open-meteo.com/v1/forecast?latitude=47.81&longitude=9.64&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,uv_index_max,uv_index_clear_sky_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,precipitation_probability_max,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&forecast_days=1&start_date=${task.date}&end_date=${task.date}&timezone=Europe%2FBerlin`)
+          .then((response) =>{
+            console.log(response.data)
+            task.weather = response.data.daily;
+          })
+          .catch(function (error) {
+            task.weather = null;
+            if (error.response) {
+              // The request was made and the server responded with a status code
+              // that falls out of the range of 2xx
+              console.log(error.response.data);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            } else if (error.request) {
+              // The request was made but no response was received
+              // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+              // http.ClientRequest in node.js
+              console.log(error.request);
+            } else {
+              // Something happened in setting up the request that triggered an Error
+              console.log('Error', error.message);
+            }
+            console.log(error.config);
+          })
+    },
   },
   created(){
     this.tasks= [
-      {id: 1, text: 'Termin 1', time: 'Montag'},
-      {id: 2, text: 'Termin 2', time: 'Dienstag'},
-      {id: 3, text: 'Termin 3', time: 'Mittwoch'},
+      {id: 1, text: 'Termin 1', date: '2023-06-27', time: '08:00', description: 'Beschreibung 1', show: false},
+      {id: 2, text: 'Termin 2', date: '2023-06-20', time: '15:30', description: 'Eine Beschreibung mit übertrieben viel Text, der im endeffekt keinen Sinn ergeben wird, sondern einfach nur die Beschreibung füllen soll, um zu sehen wie das Ganze zum Schluss aussehen wird und gegebenfalls angepasst werden kann.', show: false},
+      {id: 3, text: 'Termin 3', date: '2023-07-01', time: 'Ganztägig', description: '', show: false},
     ]
   }
 }

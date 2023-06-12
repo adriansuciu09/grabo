@@ -50,10 +50,10 @@ export default {
                 alert('Bitte Uhrzeit eingeben')
                 return
             }
-            else if(!this.time && this.fullday){
+            else if(this.fullday){
               this.time = "Ganztägig"
             }
-          const newTask = {
+            const newTask = {
                 id: Math.floor(Math.random()*10000),
                 text: this.text,
                 time: this.time
@@ -64,7 +64,9 @@ export default {
             this.$emit('add-task', newTask)
             this.$emit('task-saved')
             this.text = ''
+            this.date = ''
             this.time = ''
+            this.description = ''
         }
     }
 }

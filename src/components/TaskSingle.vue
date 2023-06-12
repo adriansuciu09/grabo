@@ -1,37 +1,145 @@
 <template>
 <div class="task">
-<h3>{{task.text}} </h3>
-<p>{{task.date}} </p>
-<p>{{task.time}} </p>
-<i @click="onDelete(task.id)" class = "fas fa-times"></i>
+  <div class="data">
+    <h3>{{task.text}} </h3>
+    <p>{{task.date}} </p>
+    <p>{{task.time}} </p>
+    <div>
+      <i @click="onShow(task)" class = "fas fa-caret-down" v-if="!task.show"></i>
+      <i @click="onShow(task)" class = "fas fa-caret-up" v-else-if="task.show"></i>
+    </div>
+    <div>
+      <i @click="onDelete(task.id)" id="delete" class = "fas fa-times"></i>
+    </div>
+  </div>
+
+  <div class="description" v-if="task.show && task.description">
+    <div><b>Beschreibung: </b></div>
+    <div>{{task.description}}</div>
+  </div>
+
+  <div class="weather" v-if="task.show && !task.weather">
+    <p>Leider sind für diesen Termin keine Wetterdaten vorhanden!</p>
+  </div>
+  <div class="weather" v-else-if="task.show && task.weather">
+    <p>
+      <i class = "fas fa-sun fa-2xl" v-if="task.weather.weathercode[0]<2"></i>
+      <i class = "fas fa-cloud fa-2xl" v-else-if="task.weather.weathercode[0]<4"></i>
+      <i class = "fas fa-smog fa-2xl" v-else-if="task.weather.weathercode[0]<49"></i>
+      <i class = "fas fa-cloud-rain fa-2xl" v-else-if="task.weather.weathercode[0]<56"></i>
+      <i class = "fas fa-snow fa-2xl" v-else-if="task.weather.weathercode[0]<58"></i>
+      <i class = "fas fa-cloud-rain fa-2xl" v-else-if="task.weather.weathercode[0]<66"></i>
+      <i class = "fas fa-cloud-rain fa-2xl" v-else-if="task.weather.weathercode[0]<68"></i><!-- +snowflake -->
+      <i class = "fas fa-snowflake fa-2xl" v-else-if="task.weather.weathercode[0]<78"></i>
+      <i class = "fas fa-cloud-showers-heavy fa-2xl" v-else-if="task.weather.weathercode[0]<83"></i>
+      <i class = "fas fa-snowflake fa-2xl" v-else-if="task.weather.weathercode[0]<87"></i>
+      <i class = "fas fa-cloud-bolt fa-2xl" v-else-if="task.weather.weathercode[0]<95"></i>
+      <i class = "fas fa-cloud-bolt fa-2xl" v-else-if="task.weather.weathercode[0]<100"></i><!-- +snowflake -->
+    </p>
+    <p>
+      min./max. Temperatur: <i class = "fas fa-temperature-low fa-l"></i>
+      <br> {{task.weather.temperature_2m_min[0]}} °C / {{task.weather.temperature_2m_max[0]}} °C
+    </p>
+    <p>
+      UV Index: <i class = "far fa-sun fa-l"></i>
+      <br> {{task.weather.uv_index_max[0]}}
+    </p>
+    <p v-if="task.weather.precipitation_sum[0]>0">
+      Niederschlag: <i class = "fas fa-droplet fa-l"></i>
+      <br> {{task.weather.precipitation_sum[0]}} mm
+    </p>
+    <p v-if="task.weather.snowfall_sum[0]>0">
+      Schneefall: <i class = "fas fa-snowflake fa-l"></i>
+      <br> {{task.weather.snowfall_sum[0]}} cm
+    </p>
+    <p>
+      Regenrisiko: <i class = "fas fa-percent fa-l"></i>
+      <br> {{task.weather.snowfall_sum[0]}} %
+    </p>
+    <p v-if="task.weather.windspeed_10m_max[0]>0">
+      max. Windgeschwindigkeit: <i class = "fas fa-wind fa-l"></i>
+      <br> {{task.weather.windspeed_10m_max[0]}} km/h
+    </p>
+
+  </div>
+<!--
+  weathercode,
+  - temperature_2m_max,
+  - temperature_2m_min,
+  - uv_index_max,
+  - precipitation_sum,
+  - snowfall_sum,
+  - precipitation_probability_max,
+  - windspeed_10m_max,
+-->
 </div>
 </template>
 
 <script>
-    export default {
+export default {
     name: 'TaskSingle',
     props: {
         task: Object
     },
     methods: {
         onDelete(id){
-            console.log(id)
+            console.log("delete " + id)
             this.$emit('delete-task',id)
         },
+        onShow(task) {
+          if (!task.show){
+            console.log("show " + task.id)
+            this.$emit('updateWeather', task)
+          } else {
+            console.log("hide " + task.id)
+            //this.$emit('delete-task', task.id)
+          }
+          task.show = !task.show
+        },
     }
-    }
+}
 </script>
-
 <style>
+.task *{
+  /*border: 1px solid black;*/
+}
 .task {
-    padding: 10px;
-    margin: 10px;
-    display: flex;
-    justify-content: space-between;
-    background-color: #f0f0f0;
-    margin-left: 10%;
-    margin-right: 10%;
+  background-color: #f0f0f0;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.task>div {
+  /*padding: 10px;
+  margin: 10px;*/
+  margin: 10px;
+  display: flex;
+}
+.data {
+  padding: 10px;
+  justify-content: space-between;
+}
+.data>h3 {
+  width: 30%;
+}
+.data>p {
+  width: 30%;
+}
+.data>div {
+  text-align: right;
+  width: 5%;
+}
+#delete {
+  color: red;
+}
+.description>div {
+  text-align: left;
+  margin-left: 1%;
+}
+.weather {
+  justify-content: space-between;
+}
+.weather>p {
+  padding: 1%;
 }
 
-    
 </style>
