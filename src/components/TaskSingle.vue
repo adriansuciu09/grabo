@@ -17,7 +17,7 @@
     <div>{{task.description}}</div>
   </div>
   <div class="weather" v-if="task.show && !task.weather">
-    <p>Leider sind für diesen Termin keine Wetterdaten vorhanden!</p>
+    <p>Leider sind für diesen Termin keine Wetterdaten vorhanden, da der Termin mehr als zwei Wochen in der Zukunft liegt!</p>
   </div>
   <div class="weather" v-else-if="task.show && task.weather">
     <p>
