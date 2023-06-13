@@ -1,22 +1,37 @@
-# Terminplaner 
+# Outdoor-Planer 
 
-## Groupmembers
+## Gruppenmitglieder
 - Adrian Suciu (35602)
 - Emircan Tutar (35606)
 - Jonathan Wekesser (35483)
  
+## TODO:
+- ~~Einträge nach Datum sortieren~~
+- ~~Info, dass nur 2 Wochen Wetterdaten verfügbar sind (in Beschreibung)~~
+- Info, dass nur 2 Wochen Wetterdaten verfügbar sind (im Code)
+- wir brauchen 4 Komponenten, haben aber 5 ... (Button in Header?)
+- Wochentag + dd.mm.YYYY als Datumformat
+- ? heutiges Wetter oben beim Header anzeigen?
+- ~~Projektbeschreibung schreiben~~
+- Warnmeldungen schöner machen (Alert ist hässlich)
+
+## Projektbeschreibung
+Unser Outdoor-Planer kann Ihre Termine wie gewohnt mit Titel, Datum, Uhrzeit und einer Beschreibung gespeichert werden. 
+<br> 
+Anders jedoch als bei herkömmlichen Terminplanern, werden bei uns live Wetterdaten für den Tag des Termins geladen und können angezeigt werden.
+<br>
+Dies macht ihn zu einem einzigartigen Planer, der vor allem für Outdoor-Aktivitäten gedacht ist, um einen nassen Abschluss des Termins zu vermeiden. 
+<br>
+Bitte beachten Sie, dass aufgrund unserer REST-API nur Wetterdaten in einem Zeitraum von zwei Wochen in der Zukunft geladen werden können. 
+
 ## Sources
-- REST-API - Open-Meteo (https://open-meteo.com/)
-- REST Errorhandling - Axio (https://www.npmjs.com/package/axios)
-- Icons - fontawesome (https://fontawesome.com)
-- AI support - ChatGPT (https://chat.openai.com/)
+- REST-API - [Open-Meteo](https://open-meteo.com/)
+- REST Errorhandling - [Axio](https://www.npmjs.com/package/axios)
+- Icons - [fontawesome](https://fontawesome.com)
+- AI support - [ChatGPT](https://chat.openai.com/)
 
-## REST-API
-- Open-Meteo (https://open-meteo.com/)
-- Beispiel für Wetterabfrage (https://api.open-meteo.com/v1/forecast?latitude=47.81&longitude=9.64&daily=weathercode,temperature_2m_max,temperature_2m_min,rain_sum,snowfall_sum&forecast_days=1&start_date=2023-06-12&end_date=2023-06-12&timezone=Europe%2FBerlin)
-
-## Weather-Data
-| Index    | Beschreibung                                     | Zeichen              |
+## Wetterdaten (Weathercode)
+| Index    | Beschreibung                                     | Icon                 |
 |----------|--------------------------------------------------|----------------------|
 | 0,1      | Clear Sky, Mainly clear                          | sun                  |
 | 2,3      | Mainly clear, partly cloudy, and overcast        | cloud-sun            |

@@ -2,7 +2,7 @@
 <div class="task">
   <div class="data">
     <h3>{{task.text}} </h3>
-    <p>{{task.date}} </p>
+    <p>{{(task.date)}} </p>
     <p>{{task.time}} </p>
     <div>
       <i @click="onShow(task)" class = "fas fa-caret-down" v-if="!task.show"></i>
@@ -12,12 +12,10 @@
       <i @click="onDelete(task.id)" id="delete" class = "fas fa-times"></i>
     </div>
   </div>
-
   <div class="description" v-if="task.show && task.description">
     <div><b>Beschreibung: </b></div>
     <div>{{task.description}}</div>
   </div>
-
   <div class="weather" v-if="task.show && !task.weather">
     <p>Leider sind für diesen Termin keine Wetterdaten vorhanden!</p>
   </div>
@@ -29,12 +27,12 @@
       <i class = "fas fa-cloud-rain fa-2xl" v-else-if="task.weather.weathercode[0]<56"></i>
       <i class = "fas fa-snow fa-2xl" v-else-if="task.weather.weathercode[0]<58"></i>
       <i class = "fas fa-cloud-rain fa-2xl" v-else-if="task.weather.weathercode[0]<66"></i>
-      <i class = "fas fa-cloud-rain fa-2xl" v-else-if="task.weather.weathercode[0]<68"></i><!-- +snowflake -->
+      <i class = "fas fa-cloud-rain fa-2xl" v-else-if="task.weather.weathercode[0]<68"></i>
       <i class = "fas fa-snowflake fa-2xl" v-else-if="task.weather.weathercode[0]<78"></i>
       <i class = "fas fa-cloud-showers-heavy fa-2xl" v-else-if="task.weather.weathercode[0]<83"></i>
       <i class = "fas fa-snowflake fa-2xl" v-else-if="task.weather.weathercode[0]<87"></i>
       <i class = "fas fa-cloud-bolt fa-2xl" v-else-if="task.weather.weathercode[0]<95"></i>
-      <i class = "fas fa-cloud-bolt fa-2xl" v-else-if="task.weather.weathercode[0]<100"></i><!-- +snowflake -->
+      <i class = "fas fa-cloud-bolt fa-2xl" v-else-if="task.weather.weathercode[0]<100"></i>
     </p>
     <p>
       min./max. Temperatur: <i class = "fas fa-temperature-low fa-l"></i>
@@ -60,18 +58,7 @@
       max. Windgeschwindigkeit: <i class = "fas fa-wind fa-l"></i>
       <br> {{task.weather.windspeed_10m_max[0]}} km/h
     </p>
-
   </div>
-<!--
-  weathercode,
-  - temperature_2m_max,
-  - temperature_2m_min,
-  - uv_index_max,
-  - precipitation_sum,
-  - snowfall_sum,
-  - precipitation_probability_max,
-  - windspeed_10m_max,
--->
 </div>
 </template>
 
@@ -100,17 +87,12 @@ export default {
 }
 </script>
 <style>
-.task *{
-  /*border: 1px solid black;*/
-}
 .task {
   background-color: #f0f0f0;
   margin-left: 10%;
   margin-right: 10%;
 }
 .task>div {
-  /*padding: 10px;
-  margin: 10px;*/
   margin: 10px;
   display: flex;
 }
@@ -141,5 +123,4 @@ export default {
 .weather>p {
   padding: 1%;
 }
-
 </style>

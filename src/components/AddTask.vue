@@ -24,7 +24,7 @@
 </template>
 
 <script>
-
+let index = 4;
 export default {
     name : 'AddTask',
     data() {
@@ -54,20 +54,22 @@ export default {
               this.time = "Ganztägig"
             }
             const newTask = {
-                id: Math.floor(Math.random()*10000),
+                //id: Math.floor(Math.random()*10000),
+                id: index++,
                 text: this.text,
-                time: this.time
+                date: this.date,
+                time: this.time,
+                description: this.description,
+                show: null,
             }
-
             console.log(newTask)
-
             this.$emit('add-task', newTask)
             this.$emit('task-saved')
             this.text = ''
             this.date = ''
             this.time = ''
             this.description = ''
-        }
+        },
     }
 }
 </script>

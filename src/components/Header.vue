@@ -1,5 +1,5 @@
 <template>
-    <h1>Terminplaner</h1>
+    <h1>Outdoor-Planer</h1>
 </template>
 
 <script>
