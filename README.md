@@ -5,17 +5,10 @@
 - Emircan Tutar (35606)
 - Jonathan Wekesser (35483)
  
-## TODO:
-- ~~Einträge nach Datum sortieren~~
-- ~~Info, dass nur 2 Wochen Wetterdaten verfügbar sind (in Beschreibung)~~
-- Info, dass nur 2 Wochen Wetterdaten verfügbar sind (im Code)
-- wir brauchen 4 Komponenten, haben aber 5 ... (Button in Header?)
-- Wochentag + dd.mm.YYYY als Datumformat
-- ? heutiges Wetter oben beim Header anzeigen?
-- ~~Projektbeschreibung schreiben~~
+## TODO
+- heutiges Wetter oben beim Header anzeigen + Info Pfeil für mehr Wetterinfos
 - Warnmeldungen schöner machen (Alert ist hässlich)
-- Reloads sollten die Daten nicht resetten?
-- Daten über Cookie oder lokal Storage speichern
+- Reloads sollten die Daten nicht resetten! -> Daten über Cookie oder lokal Storage speichern
 - Wetterbericht ist standardmäßig für Weingarten
 
 ## Projektbeschreibung

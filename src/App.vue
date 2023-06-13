@@ -1,10 +1,10 @@
 <template>
-<Header />
-<Button @click="showAddTask = !showAddTask" />
-<AddTask v-if="showAddTask" @add-task="addTask" @task-saved="showAddTask=false"/>
-<div class = "padding">
-</div>
-<TasksArray @delete-task="deleteTask" @updateWeather="getWeather" :tasks="tasks"/>
+  <Header/>
+  <Button @click="showAddTask = !showAddTask"/>
+  <AddTask v-if="showAddTask" @add-task="addTask" @task-saved="showAddTask=false"/>
+  <div class="padding">
+  </div>
+  <TasksArray @delete-task="deleteTask" @updateWeather="getWeather" :tasks="tasks"/>
 </template>
 
 <script>
@@ -26,41 +26,39 @@ export default {
     return {
       tasks: [],
       showAddTask: false,
-
     }
   },
   methods: {
-    deleteTask(id){
-      this.tasks = this.tasks.filter((task) =>task.id !== id)
+    deleteTask(id) {
+      this.tasks = this.tasks.filter((task) => task.id !== id)
     },
-    addTask(task){
+    addTask(task) {
       this.tasks = [...this.tasks, task]
       this.showAddTask = false
       //this.tasks.sort((a,b) => new Date(a.date) - new Date(b.date))
-      this.tasks.sort((a,b) => {
+      this.tasks.sort((a, b) => {
         const comp = new Date(a.date) - new Date(b.date);
         if (comp === 0) {
           const timeA = a.time.toLowerCase();
           const timeB = b.time.toLowerCase();
           if (timeA < timeB) {
             return -1;
-          } else if (timeA > timeB){
+          } else if (timeA > timeB) {
             return 1;
           } else {
             return 0;
           }
-        }
-        else {
+        } else {
           return comp;
         }
       });
 
 
     },
-    getWeather(task){
+    getWeather(task) {
       console.log("getWeather" + task.id);
       axios.get(`https://api.open-meteo.com/v1/forecast?latitude=47.81&longitude=9.64&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,uv_index_max,uv_index_clear_sky_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,precipitation_probability_max,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&forecast_days=1&start_date=${task.date}&end_date=${task.date}&timezone=Europe%2FBerlin`)
-          .then((response) =>{
+          .then((response) => {
             console.log(response.data)
             task.weather = response.data.daily;
           })
@@ -85,13 +83,24 @@ export default {
           })
     },
   },
-  created(){
-    this.tasks= [
+  created() {
+    let y = new Date().getUTCFullYear();
+    let m = new Date().getUTCMonth() + 1;
+    let d = new Date().getUTCDate();
+    if (m < 10) {
+      m = "0" + m;
+    }
+    if (d < 10) {
+      d = "0" + d;
+    }
+    let date = y + "-" + m + "-" + d;
+    this.tasks = [
+      {id: 0, text: 'WETTER', date: date, time: '', description: '', show: true},
       {id: 1, text: 'Termin 1', date: '2023-06-27', time: '08:00', description: 'Beschreibung 1', show: false},
-      {id: 2, text: 'Termin 2', date: '2023-06-20', time: '15:30', description: 'Eine Beschreibung mit übertrieben viel Text, der im endeffekt keinen Sinn ergeben wird, sondern einfach nur die Beschreibung füllen soll, um zu sehen wie das Ganze zum Schluss aussehen wird und gegebenfalls angepasst werden kann.', show: false},
+      {id: 2,text: 'Termin 2',date: '2023-06-20',time: '15:30',description: 'Eine Beschreibung mit übertrieben viel Text, der im endeffekt keinen Sinn ergeben wird, sondern einfach nur die Beschreibung füllen soll, um zu sehen wie das Ganze zum Schluss aussehen wird und gegebenfalls angepasst werden kann.',show: false},
       {id: 3, text: 'Termin 3', date: '2023-07-01', time: 'Ganztägig', description: '', show: false},
     ];
-    this.tasks.sort((a,b) => new Date(a.date) - new Date(b.date))
+    this.tasks.sort((a, b) => new Date(a.date) - new Date(b.date))
   }
 }
 </script>

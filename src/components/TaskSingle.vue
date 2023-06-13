@@ -5,11 +5,11 @@
     <p>{{dateformat(task.date)}} </p>
     <p>{{task.time}} </p>
     <div>
-      <i @click="onShow(task)" class = "fas fa-caret-down" v-if="!task.show"></i>
-      <i @click="onShow(task)" class = "fas fa-caret-up" v-else-if="task.show"></i>
+      <i @click="onShow(task)" class = "fas fa-caret-down" v-if="!task.show && task.id!==0"></i>
+      <i @click="onShow(task)" class = "fas fa-caret-up" v-else-if="task.show && task.id!==0"></i>
     </div>
     <div>
-      <i @click="onDelete(task.id)" id="delete" class = "fas fa-times"></i>
+      <i @click="onDelete(task.id)" id="delete" class = "fas fa-times" v-if="task.id!==0"></i>
     </div>
   </div>
   <div class="description" v-if="task.show && task.description">
@@ -17,7 +17,7 @@
     <div>{{task.description}}</div>
   </div>
   <div class="weather" v-if="task.show && !task.weather">
-    <p>Leider sind für diesen Termin keine Wetterdaten vorhanden, da der Termin mehr als zwei Wochen in der Zukunft liegt!</p>
+    <p>Leider sind für diesen Termin keine Wetterdaten vorhanden!</p><!-- , da der Termin mehr als zwei Wochen in der Zukunft liegt! -->
   </div>
   <div class="weather" v-else-if="task.show && task.weather">
     <p>
@@ -84,8 +84,10 @@ export default {
           task.show = !task.show
         },
         dateformat(date){
+          let array = ["Sonntag", "Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"];
+          let day = new Date(date).getDay();
           date = date.match(/\d+/g);
-          return date[2] + "." + date[1] + "." + date[0];
+          return array[day] + " " + date[2] + "." + date[1] + "." + date[0];
         },
     }
 }
