@@ -2,7 +2,7 @@
 <div class="task">
   <div class="data">
     <h3>{{task.text}} </h3>
-    <p>{{(task.date)}} </p>
+    <p>{{dateformat(task.date)}} </p>
     <p>{{task.time}} </p>
     <div>
       <i @click="onShow(task)" class = "fas fa-caret-down" v-if="!task.show"></i>
@@ -76,12 +76,16 @@ export default {
         onShow(task) {
           if (!task.show){
             console.log("show " + task.id)
-            this.$emit('updateWeather', task)
+            task.weather = this.$emit('updateWeather', task)
           } else {
             console.log("hide " + task.id)
             //this.$emit('delete-task', task.id)
           }
           task.show = !task.show
+        },
+        dateformat(date){
+          date = date.match(/\d+/g);
+          return date[2] + "." + date[1] + "." + date[0];
         },
     }
 }

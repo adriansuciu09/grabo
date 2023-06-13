@@ -7,12 +7,15 @@
  
 ## TODO:
 - ~~Einträge nach Datum sortieren~~
-- ~~Info, dass nur 2 Wochen Wetterdaten verfügbar sind~~
+- ~~Info, dass nur 2 Wochen Wetterdaten verfügbar sind (in Beschreibung)~~
+- Info, dass nur 2 Wochen Wetterdaten verfügbar sind (im Code)
 - wir brauchen 4 Komponenten, haben aber 5 ... (Button in Header?)
 - Wochentag + dd.mm.YYYY als Datumformat
 - ? heutiges Wetter oben beim Header anzeigen?
 - ~~Projektbeschreibung schreiben~~
 - Warnmeldungen schöner machen (Alert ist hässlich)
+- Reloads sollten die Daten nicht resetten?
+- Daten über Cookie oder lokal Storage speichern
 - Wetterbericht ist standardmäßig für Weingarten
 
 ## Projektbeschreibung
@@ -22,7 +25,7 @@ Anders jedoch als bei herkömmlichen Terminplanern, werden bei uns live Wetterda
 <br>
 Dies macht ihn zu einem einzigartigen Planer, der vor allem für Outdoor-Aktivitäten gedacht ist, um einen nassen Abschluss des Termins zu vermeiden. 
 <br>
-Bitte beachten Sie, dass aufgrund unserer REST-API nur Wetterdaten aus Weingarten in einem Zeitraum von zwei Wochen in der Zukunft geladen werden können. 
+Bitte beachten Sie, dass aufgrund unserer REST-API nur Wetterdaten in einem Zeitraum von zwei Wochen in der Zukunft geladen werden können. 
 
 ## Sources
 - REST-API - [Open-Meteo](https://open-meteo.com/)
@@ -39,13 +42,13 @@ Bitte beachten Sie, dass aufgrund unserer REST-API nur Wetterdaten aus Weingarte
 | 51,53,55 | Drizzle: Light, moderate, and dense intensity    | cloud-rain           |
 | 56,57    | Freezing Drizzle: Light and dense intensity      | snow                 |
 | 61,63,65 | Rain: Slight, moderate and heavy intensity       | cloud-rain           |
-| 66,67    | Freezing Rain: Light and heavy intensity         | cloud-rain           |
+| 66,67    | Freezing Rain: Light and heavy intensity         | cloud-rain+snowflake |
 | 71,73,75 | Snow fall: Slight, moderate, and heavy intensity | snowflake            |
 | 77       | Snow grains                                      | snowflake            |
 | 80,81,82 | Rain showers: Slight, moderate, and violent      | cloud-showers-heavy  |
 | 85,86    | Snow showers slight and heavy                    | snowflake            |
 | 95       | Thunderstorm: Slight or moderate                 | cloud-bolt           |
-| 96, 99   | Thunderstorm with slight and heavy hail          | cloud-bolt           | 
+| 96, 99   | Thunderstorm with slight and heavy hail          | snowflake+cloud-bolt | 
 
 
 ## Project setup
