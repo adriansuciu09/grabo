@@ -30,30 +30,34 @@ export default {
   },
   methods: {
     deleteTask(id) {
-      this.tasks = this.tasks.filter((task) => task.id !== id)
-    },
+  this.tasks = this.tasks.filter((task) => task.id !== id);
+  this.saveTasks();
+},
     addTask(task) {
-      this.tasks = [...this.tasks, task]
-      this.showAddTask = false
-      //this.tasks.sort((a,b) => new Date(a.date) - new Date(b.date))
-      this.tasks.sort((a, b) => {
-        const comp = new Date(a.date) - new Date(b.date);
-        if (comp === 0) {
-          const timeA = a.time.toLowerCase();
-          const timeB = b.time.toLowerCase();
-          if (timeA < timeB) {
-            return -1;
-          } else if (timeA > timeB) {
-            return 1;
-          } else {
-            return 0;
-          }
-        } else {
-          return comp;
-        }
-      });
-
-
+  const taskId = this.tasks.length;
+  task.id = taskId;
+  this.tasks.push(task);
+  this.showAddTask = false;
+  this.tasks.sort((a, b) => {
+    const comp = new Date(a.date) - new Date(b.date);
+    if (comp === 0) {
+      const timeA = a.time.toLowerCase();
+      const timeB = b.time.toLowerCase();
+      if (timeA < timeB) {
+        return -1;
+      } else if (timeA > timeB) {
+        return 1;
+      } else {
+        return 0;
+      }
+    } else {
+      return comp;
+    }
+  });
+  this.saveTasks();
+},
+    saveTasks() {
+      localStorage.setItem('tasks', JSON.stringify(this.tasks));
     },
     getWeather(task) {
       console.log("getWeather" + task.id);
@@ -84,6 +88,10 @@ export default {
     },
   },
   created() {
+  let savedTasks = JSON.parse(localStorage.getItem('tasks'));
+  if (savedTasks && savedTasks.length > 0) {
+    this.tasks = savedTasks;
+  } else {
     let y = new Date().getUTCFullYear();
     let m = new Date().getUTCMonth() + 1;
     let d = new Date().getUTCDate();
@@ -95,13 +103,12 @@ export default {
     }
     let date = y + "-" + m + "-" + d;
     this.tasks = [
-      {id: 0, text: 'WETTER', date: date, time: '', description: '', show: true},
-      {id: 1, text: 'Termin 1', date: '2023-06-27', time: '08:00', description: 'Beschreibung 1', show: false},
-      {id: 2,text: 'Termin 2',date: '2023-06-20',time: '15:30',description: 'Eine Beschreibung mit übertrieben viel Text, der im endeffekt keinen Sinn ergeben wird, sondern einfach nur die Beschreibung füllen soll, um zu sehen wie das Ganze zum Schluss aussehen wird und gegebenfalls angepasst werden kann.',show: false},
-      {id: 3, text: 'Termin 3', date: '2023-07-01', time: 'Ganztägig', description: '', show: false},
+      {id: 0, text: 'WETTER', date: date, time: '', description: '', show: true}
     ];
-    this.tasks.sort((a, b) => new Date(a.date) - new Date(b.date))
   }
+  this.tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
+}
+
 }
 </script>
 
