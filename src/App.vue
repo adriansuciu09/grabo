@@ -1,13 +1,23 @@
 <template>
-  <Header/>
-  <Button @click="showAddTask = !showAddTask"/>
-  <AddTask v-if="showAddTask" @add-task="addTask" @task-saved="showAddTask=false"/>
-  <div class="padding">
+  <div>
+    <Navbar @change-page="changePage" />
+    <div class="content">
+      <h1 v-if="activePage === 'home'">Home Page</h1>
+      <h1 v-if="activePage === 'outdoor'">Outdoor-Planer</h1>
+      <h1 v-if="activePage === 'about'">About Us Page</h1>
+    </div>
   </div>
-  <TasksArray @delete-task="deleteTask" @updateWeather="getWeather" :tasks="tasks"/>
+
+  <Header v-if="activePage === 'outdoor'"/>
+  <Button @click="showAddTask = !showAddTask" v-if="activePage === 'outdoor'"/>
+  <AddTask v-if="showAddTask && activePage === 'outdoor'" @add-task="addTask" @task-saved="showAddTask=false" />
+  <div class="padding" v-if="activePage === 'outdoor'">
+  </div>
+  <TasksArray @delete-task="deleteTask" @updateWeather="getWeather" :tasks="tasks" v-if="activePage === 'outdoor'"/>
 </template>
 
 <script>
+import Navbar from './components/Navbar.vue';
 import Button from './components/Button.vue'
 import Header from './components/Header.vue'
 import TasksArray from './components/TasksArray.vue'
@@ -17,18 +27,25 @@ import axios from "axios";
 export default {
   name: 'App',
   components: {
+    Navbar,
     Button,
     Header,
     TasksArray,
-    AddTask
+    AddTask,
+
   },
   data() {
     return {
+      activePage: 'home',
       tasks: [],
       showAddTask: false,
     }
   },
   methods: {
+    changePage(page) {
+      this.activePage = page;
+    },
+
     deleteTask(id) {
   this.tasks = this.tasks.filter((task) => task.id !== id);
   this.saveTasks();
@@ -145,5 +162,10 @@ export default {
 
 .padding {
   margin-top: 20px;
+}
+
+.content {
+  margin-top: 20px;
+  text-align: center;
 }
 </style>
