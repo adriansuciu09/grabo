@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar @change-page="changePage" />
+    <Navbar @change-page="changePage"/>
     <div class="content">
       <h1 v-if="activePage === 'home'">Home</h1>
       <h1 v-if="activePage === 'outdoor'">Outdoor-Planer</h1>
@@ -11,7 +11,7 @@
   <Home v-if="activePage === 'home'"/>
 
   <Button @click="showAddTask = !showAddTask" v-if="activePage === 'outdoor'"/>
-  <AddTask v-if="showAddTask && activePage === 'outdoor'" @add-task="addTask" @task-saved="showAddTask=false" />
+  <AddTask v-if="showAddTask && activePage === 'outdoor'" @add-task="addTask" @task-saved="showAddTask=false"/>
   <div class="padding" v-if="activePage === 'outdoor'">
   </div>
   <TasksArray @delete-task="deleteTask" @updateWeather="getWeather" :tasks="tasks" v-if="activePage === 'outdoor'"/>
@@ -51,32 +51,32 @@ export default {
     },
 
     deleteTask(id) {
-  this.tasks = this.tasks.filter((task) => task.id !== id);
-  this.saveTasks();
-},
+      this.tasks = this.tasks.filter((task) => task.id !== id);
+      this.saveTasks();
+    },
     addTask(task) {
-  const taskId = this.tasks.length;
-  task.id = taskId;
-  this.tasks.push(task);
-  this.showAddTask = false;
-  this.tasks.sort((a, b) => {
-    const comp = new Date(a.date) - new Date(b.date);
-    if (comp === 0) {
-      const timeA = a.time.toLowerCase();
-      const timeB = b.time.toLowerCase();
-      if (timeA < timeB) {
-        return -1;
-      } else if (timeA > timeB) {
-        return 1;
-      } else {
-        return 0;
-      }
-    } else {
-      return comp;
-    }
-  });
-  this.saveTasks();
-},
+      const taskId = this.tasks.length;
+      task.id = taskId;
+      this.tasks.push(task);
+      this.showAddTask = false;
+      this.tasks.sort((a, b) => {
+        const comp = new Date(a.date) - new Date(b.date);
+        if (comp === 0) {
+          const timeA = a.time.toLowerCase();
+          const timeB = b.time.toLowerCase();
+          if (timeA < timeB) {
+            return -1;
+          } else if (timeA > timeB) {
+            return 1;
+          } else {
+            return 0;
+          }
+        } else {
+          return comp;
+        }
+      });
+      this.saveTasks();
+    },
     saveTasks() {
       localStorage.setItem('tasks', JSON.stringify(this.tasks));
     },
@@ -109,26 +109,26 @@ export default {
     },
   },
   created() {
-  let savedTasks = JSON.parse(localStorage.getItem('tasks'));
-  if (savedTasks && savedTasks.length > 0) {
-    this.tasks = savedTasks;
-  } else {
-    let y = new Date().getUTCFullYear();
-    let m = new Date().getUTCMonth() + 1;
-    let d = new Date().getUTCDate();
-    if (m < 10) {
-      m = "0" + m;
+    let savedTasks = JSON.parse(localStorage.getItem('tasks'));
+    if (savedTasks && savedTasks.length > 0) {
+      this.tasks = savedTasks;
+    } else {
+      let y = new Date().getUTCFullYear();
+      let m = new Date().getUTCMonth() + 1;
+      let d = new Date().getUTCDate();
+      if (m < 10) {
+        m = "0" + m;
+      }
+      if (d < 10) {
+        d = "0" + d;
+      }
+      let date = y + "-" + m + "-" + d;
+      this.tasks = [
+        {id: 0, text: 'WETTER', date: date, time: '', description: '', show: true}
+      ];
     }
-    if (d < 10) {
-      d = "0" + d;
-    }
-    let date = y + "-" + m + "-" + d;
-    this.tasks = [
-      {id: 0, text: 'WETTER', date: date, time: '', description: '', show: true}
-    ];
+    this.tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
   }
-  this.tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
-}
 
 }
 </script>

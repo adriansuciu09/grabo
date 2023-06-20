@@ -5,11 +5,11 @@
     <p>{{dateformat(task.date)}} </p>
     <p>{{task.time}} </p>
     <div>
-      <i @click="onShow(task)" class = "fas fa-caret-down" v-if="!task.show && task.id!==0"></i>
-      <i @click="onShow(task)" class = "fas fa-caret-up" v-else-if="task.show && task.id!==0"></i>
+      <i @click="onShow(task)" class = "fas fa-caret-down" v-if="!task.show"></i>
+      <i @click="onShow(task)" class = "fas fa-caret-up" v-else-if="task.show"></i>
     </div>
     <div>
-      <i @click="onDelete(task.id)" id="delete" class = "fas fa-times" v-if="task.id!==0"></i>
+      <i @click="onDelete(task.id)" id="delete" class = "fas fa-times"></i>
     </div>
   </div>
   <div class="description" v-if="task.show && task.description">
