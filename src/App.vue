@@ -141,17 +141,19 @@ export default {
   text-align: center;
   color: black;
   margin-top: 60px;
+  min-width: 980px;
 }
 
 .container {
-  max-width: 960px;
+  max-width: 980px;
   margin: 0 auto;
   border: 1px solid teal;
   border-radius: 5px;
 }
 
 .btn {
-  background-color: teal;
+  font-weight: bold;
+  background-color: #0d519c;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -163,7 +165,6 @@ export default {
   cursor: pointer;
   border-radius: 5px;
 }
-
 
 .padding {
   margin-top: 20px;
