@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import swal from 'sweetalert';
+
 let index = 0;
 export default {
   name: 'AddTask',
@@ -39,21 +41,20 @@ export default {
     onSubmit(e) {
       e.preventDefault()
       if (!this.text) {
-        alert('Bitte Termin eingeben')
+        swal("Bitte Termin eingeben");
         return
       }
       if (!this.date) {
-        alert('Bitte Datum eingeben')
+        swal("Bitte Datum eingeben")
         return
       }
       if (!this.time && !this.fullday) {
-        alert('Bitte Uhrzeit eingeben')
+        swal("Bitte Uhrzeit eingeben")
         return
       } else if (this.fullday) {
         this.time = "Ganztägig"
       }
       const newTask = {
-        //id: Math.floor(Math.random()*10000),
         id: index++,
         text: this.text,
         date: this.date,
@@ -82,5 +83,7 @@ form {
   justify-content: space-between;
   background-color: #f0f0f0;
 }
+.error{
 
+}
 </style>

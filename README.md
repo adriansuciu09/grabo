@@ -6,8 +6,6 @@
 - Jonathan Wekesser (35483)
  
 ## TODO
-- Outdoor-Planer
-  - Warnmeldungen schöner machen (Alert ist hässlich)
 - Router: 
   - Link einstellen für die Übergänge zwischen den Seiten
 
@@ -54,6 +52,7 @@ npm install axios
 ```
 npm install router
 ```
+
 ### Compiles and hot-reloads for development
 ```
 npm run serve
