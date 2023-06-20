@@ -5,6 +5,7 @@
       <li :class="{ active: activePage === 'outdoor' }" @click="changePage('outdoor')">Outdoor-Planer</li>
       <li :class="{ active: activePage === 'about' }" @click="changePage('about')">About Us</li>
     </ul>
+    <div class="animation"></div>
   </nav>
 </template>
 
@@ -26,29 +27,46 @@ export default {
 </script>
 
 <style scoped>
+
 nav {
-  background-color: #f0f0f0;
   padding: 10px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
   z-index: 999;
+  margin: 27px auto 0;
+  position: relative;
+  width: 600px;
+  height: 50px;
+  background-color: #34495e;
+  border-radius: 8px;
+  font-size: 0;
 }
 
 ul {
   list-style-type: none;
   display: flex;
-  justify-content: space-around;
   margin: 0;
   padding: 0;
 }
 
 li {
+  border-right: 2px solid white;
+  border-left: 2px solid white;
+  line-height: 50px;
+  width: 200px;
+  height: 100%;
+  font-size: 15px;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  color: white;
   cursor: pointer;
 }
 
 li.active {
+  color: #59c0f8;
   font-weight: bold;
 }
+
 </style>
