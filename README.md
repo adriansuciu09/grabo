@@ -48,7 +48,12 @@ Bitte beachten Sie, dass aufgrund unserer REST-API nur Wetterdaten in einem Zeit
 ```
 npm install
 ```
-
+```
+npm install axios
+```
+```
+npm install router
+```
 ### Compiles and hot-reloads for development
 ```
 npm run serve

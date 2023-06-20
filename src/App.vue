@@ -131,10 +131,12 @@ export default {
     }
     this.tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
 
-    axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&forecast_days=1&timezone=Europe%2FBerlin`)
+    axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=precipitation_probability&current_weather=true&forecast_days=1&timezone=Europe%2FBerlin`)
         .then((response) => {
           console.log(response.data.current_weather)
           this.currentWeather = response.data.current_weather;
+          let hour = new Date().getHours();
+          this.currentWeather.precipitation_probability = response.data.hourly.precipitation_probability[hour];
         })
         .catch(function (error) {
           this.currentWeather = null;
