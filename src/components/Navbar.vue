@@ -5,7 +5,6 @@
       <li :class="{ active: activePage === 'outdoor' }" @click="changePage('outdoor')">Outdoor-Planer</li>
       <li :class="{ active: activePage === 'about' }" @click="changePage('about')">About Us</li>
     </ul>
-    <div class="animation"></div>
   </nav>
 </template>
 

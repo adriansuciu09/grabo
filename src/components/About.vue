@@ -24,6 +24,22 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+
+p {
+  font-size: 30px;
+  margin-bottom: 40px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 40px;
+}
+
+li {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
 
 </style>

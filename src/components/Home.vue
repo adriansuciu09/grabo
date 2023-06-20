@@ -1,5 +1,5 @@
 <template>
-    <p1> Wetterbericht für Weingarten </p1>
+    <p> Aktuelles Wetter in Weingarten: </p>
 
 </template>
 
@@ -11,11 +11,14 @@ export default {
 </script>
 
 <style>
-body{
+
+html{
 background-color: #59c0f8;
 }
 
-p1{
-
+p {
+  font-size: 20px;
+  margin-bottom: 20px;
 }
+
 </style>

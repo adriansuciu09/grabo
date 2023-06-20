@@ -6,6 +6,8 @@
 - Jonathan Wekesser (35483)
  
 ## TODO
+- Button:
+  - ?
 - Header
   - ?
 - Home Page
@@ -15,6 +17,8 @@
 - Outdoor-Planer
   - Warnmeldungen schöner machen (Alert ist hässlich)
   - ID0 entfernen
+- Router: 
+  - Link einstellen für die Übergänge zwischen den Seiten
 - About Us
   - Infos über uns
 
