@@ -43,4 +43,8 @@ li {
   margin-bottom: 15px;
 }
 
+a {
+  color:whitesmoke;
+}
+
 </style>

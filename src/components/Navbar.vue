@@ -29,7 +29,6 @@ export default {
 
 nav {
   padding: 10px;
-  //margin: 3% auto 0;
   margin: 27px auto 0;
   position: relative;
   width: 60%;
@@ -61,8 +60,15 @@ li {
   cursor: pointer;
 }
 
-li.active {
+li:first-child {
+  border-left: none;
+}
 
+li:last-child {
+  border-right: none;
+}
+
+li.active {
   color: gold;
   text-transform: uppercase;
   font-weight: bold;

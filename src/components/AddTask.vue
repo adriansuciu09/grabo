@@ -73,6 +73,7 @@ export default {
 }
 </script>
 <style>
+
 form {
   font-weight: bold;
   padding: 10px;
@@ -81,4 +82,5 @@ form {
   justify-content: space-between;
   background-color: #f0f0f0;
 }
+
 </style>
