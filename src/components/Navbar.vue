@@ -29,18 +29,15 @@ export default {
 
 nav {
   padding: 10px;
-  z-index: 999;
   margin: 27px auto 0;
   position: relative;
   width: 600px;
   height: 50px;
-  background-color: #34495e;
-  border-radius: 8px;
-  font-size: 0;
+  background-color: #0d519d;
+  border-radius: 15px;
 }
 
 ul {
-  list-style-type: none;
   display: flex;
   margin: 0;
   padding: 0;
@@ -52,11 +49,9 @@ li {
   line-height: 50px;
   width: 200px;
   height: 100%;
-  font-size: 15px;
+  font-size: 18px;
   display: inline-block;
   position: relative;
-  z-index: 1;
-  text-decoration: none;
   text-transform: uppercase;
   text-align: center;
   color: white;

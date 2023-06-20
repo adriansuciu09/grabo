@@ -94,6 +94,7 @@ export default {
 </script>
 <style>
 .task {
+  border-radius: 10px;
   background-color: #f0f0f0;
   margin-left: 10%;
   margin-right: 10%;

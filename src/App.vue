@@ -2,7 +2,7 @@
   <div>
     <Navbar @change-page="changePage" />
     <div class="content">
-      <h1 v-if="activePage === 'home'">Home Page</h1>
+      <h1 v-if="activePage === 'home'">Home</h1>
       <h1 v-if="activePage === 'outdoor'">Outdoor-Planer</h1>
       <h1 v-if="activePage === 'about'">About Us</h1>
     </div>
@@ -164,11 +164,13 @@ export default {
   border-radius: 5px;
 }
 
+
 .padding {
   margin-top: 20px;
 }
 
 .content {
+  color: white;
   margin-top: 20px;
   text-align: center;
 }

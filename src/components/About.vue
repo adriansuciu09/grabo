@@ -27,13 +27,14 @@ export default {
 <style scoped>
 
 p {
+  color: white;
   font-size: 30px;
   margin-bottom: 40px;
 }
 
 ul {
   list-style-type: none;
-  padding: 0;
+  padding: 5px;
   margin: 40px;
 }
 
