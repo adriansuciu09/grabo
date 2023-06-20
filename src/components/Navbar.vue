@@ -29,9 +29,11 @@ export default {
 
 nav {
   padding: 10px;
+  //margin: 3% auto 0;
   margin: 27px auto 0;
   position: relative;
   width: 60%;
+  min-width: 600px ;
   height: 50px;
   background-color: #0d519d;
   border-radius: 15px;
@@ -47,6 +49,7 @@ li {
   border-right: 2px solid white;
   border-left: 2px solid white;
   line-height: 50px;
+  min-width: 200px;
   width: 33.33%;
   height: 100%;
   font-size: 18px;
