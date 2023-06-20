@@ -79,7 +79,6 @@ export default {
             task.weather = this.$emit('updateWeather', task)
           } else {
             console.log("hide " + task.id)
-            //this.$emit('delete-task', task.id)
           }
           task.show = !task.show
         },

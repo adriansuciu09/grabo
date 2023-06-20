@@ -24,7 +24,7 @@
 </template>
 
 <script>
-let index = 4;
+let index = 0;
 export default {
   name: 'AddTask',
   data() {

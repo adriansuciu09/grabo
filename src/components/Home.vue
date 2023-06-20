@@ -1,25 +1,50 @@
 <template>
-    <p1> Aktuelles Wetter in Weingarten: </p1>
+  <div class="current">
+    <p> Aktuelles Wetter in Weingarten:</p>
+    <div>
+      <i class = "fas fa-sun fa-2xl" v-if="currentWeather?.weathercode<2"/>
+      <i class = "fas fa-cloud fa-2xl" v-else-if="currentWeather?.weathercode<4"/>
+      <i class = "fas fa-smog fa-2xl" v-else-if="currentWeather?.weathercode<49"/>
+      <i class = "fas fa-cloud-rain fa-2xl" v-else-if="currentWeather?.weathercode<56"/>
+      <i class = "fas fa-snow fa-2xl" v-else-if="currentWeather?.weathercode<58"/>
+      <i class = "fas fa-cloud-rain fa-2xl" v-else-if="currentWeather?.weathercode<66"/>
+      <i class = "fas fa-cloud-rain fa-2xl" v-else-if="currentWeather?.weathercode<68"/>
+      <i class = "fas fa-snowflake fa-2xl" v-else-if="currentWeather?.weathercode<78"/>
+      <i class = "fas fa-cloud-showers-heavy fa-2xl" v-else-if="currentWeather?.weathercode<83"/>
+      <i class = "fas fa-snowflake fa-2xl" v-else-if="currentWeather?.weathercode<87"/>
+      <i class = "fas fa-cloud-bolt fa-2xl" v-else-if="currentWeather?.weathercode<95"/>
+      <i class = "fas fa-cloud-bolt fa-2xl" v-else-if="currentWeather?.weathercode<100"/>
+    </div>
+    <div>
+      Temperatur: <i class = "fas fa-temperature-low fa-l"/>{{currentWeather?.temperature}} °C
+    </div>
+  </div>
 
 </template>
 
 <script>
-
 export default {
-    name: 'Home-one',
+  name: 'Home-one',
+  props: {
+    currentWeather: Object,
+  }
 }
 </script>
 
 <style>
 
-html{
-background-color: #3b89f5;
+html {
+  background-color: #3b89f5;
 }
 
-p1 {
+.current {
   color: white;
   font-size: 20px;
   margin-bottom: 20px;
+}
+
+.current>div{
+  padding: 1%;
 }
 
 </style>

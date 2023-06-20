@@ -6,21 +6,10 @@
 - Jonathan Wekesser (35483)
  
 ## TODO
-- Button:
-  - ?
-- Header
-  - ?
-- Home Page
-  - heutiges Wetter anzeigen
-  - Infos zum API 
-  - Wetterbericht ist standardmäßig für Weingarten
 - Outdoor-Planer
   - Warnmeldungen schöner machen (Alert ist hässlich)
-  - ID0 entfernen
 - Router: 
   - Link einstellen für die Übergänge zwischen den Seiten
-- About Us
-  - Infos über uns
 
 ## Projektbeschreibung
 Unser Outdoor-Planer kann Ihre Termine wie gewohnt mit Titel, Datum, Uhrzeit und einer Beschreibung gespeichert werden. 
