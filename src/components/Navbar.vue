@@ -31,7 +31,7 @@ nav {
   padding: 10px;
   margin: 27px auto 0;
   position: relative;
-  width: 600px;
+  width: 60%;
   height: 50px;
   background-color: #0d519d;
   border-radius: 15px;
@@ -47,19 +47,21 @@ li {
   border-right: 2px solid white;
   border-left: 2px solid white;
   line-height: 50px;
-  width: 200px;
+  width: 33.33%;
   height: 100%;
   font-size: 18px;
   display: inline-block;
   position: relative;
-  text-transform: uppercase;
+  //text-transform: uppercase;
   text-align: center;
   color: white;
   cursor: pointer;
 }
 
 li.active {
-  color: #59c0f8;
+
+  color: gold;
+  text-transform: uppercase;
   font-weight: bold;
 }
 

@@ -74,6 +74,7 @@ export default {
 </script>
 <style>
 form {
+  font-weight: bold;
   padding: 10px;
   margin: 10px 10%;
   display: flex;

@@ -171,6 +171,7 @@ export default {
 
 .content {
   color: white;
+  font-weight: bold;
   margin-top: 20px;
   text-align: center;
 }
