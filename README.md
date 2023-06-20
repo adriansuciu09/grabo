@@ -6,10 +6,17 @@
 - Jonathan Wekesser (35483)
  
 ## TODO
-- heutiges Wetter oben beim Header anzeigen + Info Pfeil für mehr Wetterinfos
-- Warnmeldungen schöner machen (Alert ist hässlich)
-- Reloads sollten die Daten nicht resetten! -> Daten über Cookie oder lokal Storage speichern
-- Wetterbericht ist standardmäßig für Weingarten
+- Header
+  - ?
+- Home Page
+  - heutiges Wetter anzeigen
+  - Infos zum API 
+  - Wetterbericht ist standardmäßig für Weingarten
+- Outdoor-Planer
+  - Warnmeldungen schöner machen (Alert ist hässlich)
+  - ID0 entfernen
+- About Us
+  - Infos über uns
 
 ## Projektbeschreibung
 Unser Outdoor-Planer kann Ihre Termine wie gewohnt mit Titel, Datum, Uhrzeit und einer Beschreibung gespeichert werden. 

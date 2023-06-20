@@ -52,7 +52,7 @@
     </p>
     <p>
       Regenrisiko: <i class = "fas fa-percent fa-l"></i>
-      <br> {{task.weather.snowfall_sum[0]}} %
+      <br> {{task.weather.precipitation_probability_max[0]}} %
     </p>
     <p v-if="task.weather.windspeed_10m_max[0]>0">
       max. Windgeschwindigkeit: <i class = "fas fa-wind fa-l"></i>

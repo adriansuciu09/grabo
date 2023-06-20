@@ -4,23 +4,27 @@
     <div class="content">
       <h1 v-if="activePage === 'home'">Home Page</h1>
       <h1 v-if="activePage === 'outdoor'">Outdoor-Planer</h1>
-      <h1 v-if="activePage === 'about'">About Us Page</h1>
+      <h1 v-if="activePage === 'about'">About Us</h1>
     </div>
   </div>
 
-  <Header v-if="activePage === 'outdoor'"/>
+  <Home v-if="activePage === 'home'"/>
+
   <Button @click="showAddTask = !showAddTask" v-if="activePage === 'outdoor'"/>
   <AddTask v-if="showAddTask && activePage === 'outdoor'" @add-task="addTask" @task-saved="showAddTask=false" />
   <div class="padding" v-if="activePage === 'outdoor'">
   </div>
   <TasksArray @delete-task="deleteTask" @updateWeather="getWeather" :tasks="tasks" v-if="activePage === 'outdoor'"/>
+
+  <About v-if="activePage === 'about'"/>
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue';
 import Button from './components/Button.vue'
-import Header from './components/Header.vue'
+import Home from './components/Home.vue'
 import TasksArray from './components/TasksArray.vue'
+import About from './components/About.vue'
 import AddTask from './components/AddTask.vue'
 import axios from "axios";
 
@@ -29,10 +33,10 @@ export default {
   components: {
     Navbar,
     Button,
-    Header,
+    Home,
     TasksArray,
     AddTask,
-
+    About,
   },
   data() {
     return {

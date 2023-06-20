@@ -5,6 +5,6 @@
 <script>
 
 export default {
-    name: 'Header-one',
+    name: 'Home-one',
 }
 </script>
