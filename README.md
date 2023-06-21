@@ -4,10 +4,6 @@
 - Adrian Suciu (35602)
 - Emircan Tutar (35606)
 - Jonathan Wekesser (35483)
- 
-## TODO
-- Router: 
-  - Link einstellen für die Übergänge zwischen den Seiten
 
 ## Projektbeschreibung
 Unser Outdoor-Planer kann Ihre Termine wie gewohnt mit Titel, Datum, Uhrzeit und einer Beschreibung gespeichert werden. 
@@ -22,6 +18,7 @@ Bitte beachten Sie, dass aufgrund unserer REST-API nur Wetterdaten in einem Zeit
 - REST-API - [Open-Meteo](https://open-meteo.com/)
 - REST Errorhandling - [Axio](https://www.npmjs.com/package/axios)
 - Icons - [fontawesome](https://fontawesome.com)
+- Alert - [Sweetalert2](https://sweetalert2.github.io/)
 - AI support - [ChatGPT](https://chat.openai.com/)
 
 ## Wetterdaten (Weathercode)
@@ -50,7 +47,7 @@ npm install
 npm install axios
 ```
 ```
-npm install router
+npm install sweetalert2
 ```
 
 ### Compiles and hot-reloads for development

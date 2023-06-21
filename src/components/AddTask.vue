@@ -24,7 +24,27 @@
 </template>
 
 <script>
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
+
+function fireAlertSuccess(alertText){
+  Swal.fire({
+    icon: 'success',
+    title: alertText,
+    color: 'black',
+    showConfirmButton: true,
+    timer: 1500,
+  })
+}
+
+function fireAlertError(alertText){
+  Swal.fire({
+    icon: 'error',
+    title: alertText,
+    color: 'black',
+    showConfirmButton: false,
+    timer: 1500,
+  })
+}
 
 let index = 0;
 export default {
@@ -41,15 +61,15 @@ export default {
     onSubmit(e) {
       e.preventDefault()
       if (!this.text) {
-        swal("Bitte Termin eingeben");
+        fireAlertError("Bitte Termin eingeben");
         return
       }
       if (!this.date) {
-        swal("Bitte Datum eingeben")
+        fireAlertError("Bitte Datum eingeben");
         return
       }
       if (!this.time && !this.fullday) {
-        swal("Bitte Uhrzeit eingeben")
+        fireAlertError("Bitte Uhrzeit eingeben");
         return
       } else if (this.fullday) {
         this.time = "Ganztägig"
@@ -65,6 +85,7 @@ export default {
       console.log(newTask)
       this.$emit('add-task', newTask)
       this.$emit('task-saved')
+      fireAlertSuccess("Termin " + this.text + " wurde erfolgreich gespeichert");
       this.text = ''
       this.date = ''
       this.time = ''
@@ -74,7 +95,6 @@ export default {
 }
 </script>
 <style>
-
 form {
   font-weight: bold;
   padding: 10px;
@@ -82,8 +102,5 @@ form {
   display: flex;
   justify-content: space-between;
   background-color: #f0f0f0;
-}
-.error{
-
 }
 </style>
