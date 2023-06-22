@@ -1,35 +1,34 @@
 <template>
   <div>
-    <Navbar @change-page="changePage"/>
+    <Navbar @change-page="changePage" />
     <div class="content">
       <h1 v-if="activePage === 'home'">Home</h1>
       <h1 v-if="activePage === 'outdoor'">Outdoor-Planer</h1>
       <h1 v-if="activePage === 'about'">About Us</h1>
     </div>
+
+    <Home v-if="activePage === 'home'" :currentWeather="currentWeather" />
+
+    <Button @click="toggleAddTask" v-if="activePage === 'outdoor'" />
+    <AddTask v-if="showAddTask && activePage === 'outdoor'" @add-task="addTask" @task-saved="showAddTask = false" />
+    <div class="padding" v-if="activePage === 'outdoor'"></div>
+    <TasksArray v-if="activePage === 'outdoor'" :tasks="tasks" @delete-task="deleteTask" @update-weather="updateWeather" />
+
+    <About v-if="activePage === 'about'" />
   </div>
-
-  <Home v-if="activePage === 'home'" :currentWeather="currentWeather"/>
-
-  <Button @click="showAddTask = !showAddTask" v-if="activePage === 'outdoor'"/>
-  <AddTask v-if="showAddTask && activePage === 'outdoor'" @add-task="addTask" @task-saved="showAddTask=false"/>
-  <div class="padding" v-if="activePage === 'outdoor'">
-  </div>
-  <TasksArray @delete-task="deleteTask" @updateWeather="updateWeather" :tasks="tasks" v-if="activePage === 'outdoor'"/>
-
-  <About v-if="activePage === 'about'"/>
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue';
-import Button from './components/Button.vue'
-import Home from './components/Home.vue'
-import TasksArray from './components/TasksArray.vue'
-import About from './components/About.vue'
-import AddTask from './components/AddTask.vue'
-import axios from "axios";
+import Button from './components/Button.vue';
+import Home from './components/Home.vue';
+import TasksArray from './components/TasksArray.vue';
+import About from './components/About.vue';
+import AddTask from './components/AddTask.vue';
+import axios from 'axios';
 
-var latitude = 47.81;
-var longitude = 9.64;
+const latitude = 47.81;    //Koordinaten von Weingarten
+const longitude = 9.64;
 
 export default {
   name: 'App',
@@ -47,7 +46,7 @@ export default {
       tasks: [],
       currentWeather: {},
       showAddTask: false,
-    }
+    };
   },
   methods: {
     changePage(page) {
@@ -61,6 +60,31 @@ export default {
       task.id = this.tasks.length;
       this.tasks.push(task);
       this.showAddTask = false;
+      this.sortTasks();
+      this.saveTasks();
+    },
+    saveTasks() {
+      localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    },
+    toggleAddTask() {
+      this.showAddTask = !this.showAddTask;
+    },
+    updateWeather(task) {
+      const startDate = task.date;
+      const endDate = task.date;
+      const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,uv_index_max,uv_index_clear_sky_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,precipitation_probability_max,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&forecast_days=1&start_date=${startDate}&end_date=${endDate}&timezone=Europe%2FBerlin`;
+
+      axios
+          .get(apiUrl)
+          .then((response) => {
+            task.weather = response.data.daily;
+          })
+          .catch((error) => {
+            console.log('Error fetching weather data:', error);
+            task.weather = null;
+          });
+    },
+    sortTasks() {
       this.tasks.sort((a, b) => {
         const comp = new Date(a.date) - new Date(b.date);
         if (comp === 0) {
@@ -77,83 +101,36 @@ export default {
           return comp;
         }
       });
-      this.saveTasks();
-    },
-    saveTasks() {
-      localStorage.setItem('tasks', JSON.stringify(this.tasks));
-    },
-    updateWeather(task) {
-      //console.log("updateWeather" + task.id);
-      axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,uv_index_max,uv_index_clear_sky_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,precipitation_probability_max,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&forecast_days=1&start_date=${task.date}&end_date=${task.date}&timezone=Europe%2FBerlin`)
-          .then((response) => {
-            //console.log(response.data)
-            task.weather = response.data.daily;
-          })
-          .catch(function (error) {
-            task.weather = null;
-            if (error.response) {
-              // The request was made and the server responded with a status code
-              // that falls out of the range of 2xx
-              console.log(error.response.data);
-              console.log(error.response.status);
-              console.log(error.response.headers);
-            } else if (error.request) {
-              // The request was made but no response was received
-              // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-              // http.ClientRequest in node.js
-              console.log(error.request);
-            } else {
-              // Something happened in setting up the request that triggered an Error
-              console.log('Error', error.message);
-            }
-            console.log(error.config);
-          })
     },
   },
-  created: function () {
-    let savedTasks = JSON.parse(localStorage.getItem('tasks'));
+  created() {
+    const savedTasks = JSON.parse(localStorage.getItem('tasks'));
     if (savedTasks && savedTasks.length > 0) {
       this.tasks = savedTasks;
     } else {
-      let y = new Date().getUTCFullYear();
-      let m = new Date().getUTCMonth() + 1;
-      let d = new Date().getUTCDate();
-      if (m < 10) {
-        m = "0" + m;
-      }
-      if (d < 10) {
-        d = "0" + d;
-      }
-      let date = y + "-" + m + "-" + d;
+      const now = new Date();
+      const date = now.toISOString().split('T')[0];      //toISOString: Converts the date to string (format: YYYY-MM-DDTHH:mm:ss.sssZ).
+                                                                  // split (T): Splits into array with 2 Elements, "T" is seperator.
+                                                                  // with [0], you get the first element in Array: YYYY-MM-DD.
       this.tasks = [
-        {id: 0, text: 'WETTER', date: date, time: '', description: '', show: true}
+        { id: 0, text: 'WETTER', date: date, time: '', description: '', show: true },
       ];
     }
-    this.tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
+    this.sortTasks();
 
-    axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=precipitation_probability&current_weather=true&forecast_days=1&timezone=Europe%2FBerlin`)
+    axios
+        .get(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=precipitation_probability&current_weather=true&forecast_days=1&timezone=Europe%2FBerlin`)
         .then((response) => {
-          console.log(response.data.current_weather)
           this.currentWeather = response.data.current_weather;
-          let hour = new Date().getHours();
+          const hour = new Date().getHours();
           this.currentWeather.precipitation_probability = response.data.hourly.precipitation_probability[hour];
         })
-        .catch(function (error) {
+        .catch((error) => {
+          console.log('Error fetching current weather:', error);
           this.currentWeather = null;
-          if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else if (error.request) {
-            console.log(error.request);
-          } else {
-            console.log('Error', error.message);
-          }
-          console.log(error.config);
-        })
-        console.log("CurrentWeather " + this.currentWeather)
-  }
-}
+        });
+  },
+};
 </script>
 
 <style>
