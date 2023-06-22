@@ -1,24 +1,28 @@
 <template>
-    <div :key="task.id" v-for="task in tasks">
-        <TaskSingle @delete-task="$emit('delete-task',task.id)" @updateWeather="$emit('updateWeather',task)" :task="task"/>
-    </div>
-
+  <div>
+    <TaskSingle
+        v-for="task in tasks"
+        :key="task.id"
+        @delete-task="$emit('delete-task', task.id)"
+        @updateWeather="$emit('updateWeather', task)"
+        :task="task"
+    />
+  </div>
 </template>
 
 <script>
-import TaskSingle from './TaskSingle.vue'
+import TaskSingle from './TaskSingle.vue';
 
 export default {
-    name: 'Tasks-one',
-    props: {
-        tasks: {
-            type: Array
-        }
-    },
-    components: {
-        TaskSingle
-    },
-    emits: ['delete-task']['updateWeather'],
-}
-
+  name: 'TaskArray',
+  props: {
+    tasks: {
+      type: Array
+    }
+  },
+  components: {
+    TaskSingle
+  },
+  emits: ['delete-task', 'updateWeather']
+};
 </script>
