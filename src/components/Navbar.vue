@@ -10,7 +10,8 @@
 
 <script>
 export default {
-  name: 'Navbar-one',
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: 'Navbar',
   data() {
     return {
       activePage: 'home'
@@ -54,7 +55,7 @@ li {
   font-size: 18px;
   display: inline-block;
   position: relative;
-  //text-transform: uppercase;
+  text-transform: uppercase;
   text-align: center;
   color: white;
   cursor: pointer;
