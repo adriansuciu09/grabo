@@ -108,12 +108,14 @@ export default {
     if (savedTasks && savedTasks.length > 0) {
       this.tasks = savedTasks;
     } else {
+      //Dieser Codeabschnitt, ist lediglich zur Demonstration da.
+      //Sonst würde hier kein Termin erstellt werden.
       const now = new Date();
       const date = now.toISOString().split('T')[0];      //toISOString: Converts the date to string (format: YYYY-MM-DDTHH:mm:ss.sssZ).
                                                                   // split (T): Splits into array with 2 Elements, "T" is seperator.
                                                                   // with [0], you get the first element in Array: YYYY-MM-DD.
       this.tasks = [
-        { id: 0, text: 'WETTER', date: date, time: '', description: '', show: true },
+        { id: 0, text: 'Beispieltermin', date: date, time: 'ganztägig', description: 'Hier ist eine Beispielbeschreibung für einen Termin'},
       ];
     }
     this.sortTasks();

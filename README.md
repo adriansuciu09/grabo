@@ -12,7 +12,10 @@ Anders jedoch als bei herkömmlichen Terminplanern, werden bei uns live Wetterda
 <br>
 Dies macht ihn zu einem einzigartigen Planer, der vor allem für Outdoor-Aktivitäten gedacht ist, um einen nassen Abschluss des Termins zu vermeiden. 
 <br>
-Bitte beachten Sie, dass aufgrund unserer REST-API nur Wetterdaten in einem Zeitraum von zwei Wochen in der Zukunft geladen werden können. 
+Bitte beachten Sie, dass aufgrund unserer REST-API nur Wetterdaten in einem Zeitraum von zwei Wochen in der Zukunft geladen werden können.
+<br>
+<br>
+Zu unserem Outdoor-Planer geht es hier: [Outdoor-Planer](https://stupendous-sherbet-18f496.netlify.app/) 
 
 ## Sources
 - REST-API - [Open-Meteo](https://open-meteo.com/)
