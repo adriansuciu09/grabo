@@ -24,27 +24,27 @@
         <i class="fas" :class="weatherIconClass(task.weather.weathercode[0])"></i>
       </p>
       <p>
-        min./max. Temperatur: <i class="fas fa-temperature-low fa-l"></i><br />
+        min./max. Temperatur: <i class="fas fa-temperature-low fa-l"></i><br/>
         {{ task.weather.temperature_2m_min[0] }} °C / {{ task.weather.temperature_2m_max[0] }} °C
       </p>
       <p>
-        UV Index: <i class="far fa-sun fa-l"></i><br />
+        UV Index: <i class="far fa-sun fa-l"></i><br/>
         {{ task.weather.uv_index_max[0] }}
       </p>
       <p v-if="task.weather.precipitation_sum[0] > 0">
-        Niederschlag: <i class="fas fa-droplet fa-l"></i><br />
+        Niederschlag: <i class="fas fa-droplet fa-l"></i><br/>
         {{ task.weather.precipitation_sum[0] }} mm
       </p>
       <p v-if="task.weather.snowfall_sum[0] > 0">
-        Schneefall: <i class="fas fa-snowflake fa-l"></i><br />
+        Schneefall: <i class="fas fa-snowflake fa-l"></i><br/>
         {{ task.weather.snowfall_sum[0] }} cm
       </p>
       <p>
-        Regenrisiko: <i class="fas fa-percent fa-l"></i><br />
+        Regenrisiko: <i class="fas fa-percent fa-l"></i><br/>
         {{ task.weather.precipitation_probability_max[0] }} %
       </p>
       <p v-if="task.weather.windspeed_10m_max[0] > 0">
-        max. Windgeschwindigkeit: <i class="fas fa-wind fa-l"></i><br />
+        max. Windgeschwindigkeit: <i class="fas fa-wind fa-l"></i><br/>
         {{ task.weather.windspeed_10m_max[0] }} km/h
       </p>
     </div>
@@ -115,34 +115,43 @@ export default {
   margin-left: 10%;
   margin-right: 10%;
 }
+
 .task > div {
   margin: 10px;
   display: flex;
 }
+
 .data {
   padding: 10px;
   justify-content: space-between;
 }
+
 .data > h3 {
   width: 30%;
 }
+
 .data > p {
   width: 30%;
 }
+
 .data > div {
   text-align: right;
   width: 5%;
 }
+
 #delete {
   color: red;
 }
+
 .description > div {
   text-align: left;
   margin-left: 1%;
 }
+
 .weather {
   justify-content: space-between;
 }
+
 .weather > p {
   padding: 1%;
 }

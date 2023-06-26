@@ -1,20 +1,21 @@
 <template>
   <div>
-    <Navbar @change-page="changePage" />
+    <Navbar @change-page="changePage"/>
     <div class="content">
       <h1 v-if="activePage === 'home'">Home</h1>
       <h1 v-if="activePage === 'outdoor'">Outdoor-Planer</h1>
       <h1 v-if="activePage === 'about'">About Us</h1>
     </div>
 
-    <Home v-if="activePage === 'home'" :currentWeather="currentWeather" />
+    <Home v-if="activePage === 'home'" :currentWeather="currentWeather"/>
 
-    <Button @click="toggleAddTask" v-if="activePage === 'outdoor'" />
-    <AddTask v-if="showAddTask && activePage === 'outdoor'" @add-task="addTask" @task-saved="showAddTask = false" />
+    <Button @click="toggleAddTask" v-if="activePage === 'outdoor'"/>
+    <AddTask v-if="showAddTask && activePage === 'outdoor'" @add-task="addTask" @task-saved="showAddTask = false"/>
     <div class="padding" v-if="activePage === 'outdoor'"></div>
-    <TasksArray v-if="activePage === 'outdoor'" :tasks="tasks" @delete-task="deleteTask" @update-weather="updateWeather" />
+    <TasksArray v-if="activePage === 'outdoor'" :tasks="tasks" @delete-task="deleteTask"
+                @update-weather="updateWeather"/>
 
-    <About v-if="activePage === 'about'" />
+    <About v-if="activePage === 'about'"/>
   </div>
 </template>
 
@@ -111,11 +112,18 @@ export default {
       //Dieser Codeabschnitt, ist lediglich zur Demonstration da.
       //Sonst würde hier kein Termin erstellt werden.
       const now = new Date();
-      const date = now.toISOString().split('T')[0];      //toISOString: Converts the date to string (format: YYYY-MM-DDTHH:mm:ss.sssZ).
-                                                                  // split (T): Splits into array with 2 Elements, "T" is seperator.
-                                                                  // with [0], you get the first element in Array: YYYY-MM-DD.
+      const date = now.toISOString().split('T')[0];
+      //toISOString: Converts the date to string (format: YYYY-MM-DDTHH:mm:ss.sssZ).
+      // split (T): Splits into array with 2 Elements, "T" is seperator.
+      // with [0], you get the first element in Array: YYYY-MM-DD.
       this.tasks = [
-        { id: 0, text: 'Beispieltermin', date: date, time: 'ganztägig', description: 'Hier ist eine Beispielbeschreibung für einen Termin'},
+        {
+          id: 0,
+          text: 'Beispieltermin',
+          date: date,
+          time: 'ganztägig',
+          description: 'Hier ist eine Beispielbeschreibung für einen Termin'
+        },
       ];
     }
     this.sortTasks();

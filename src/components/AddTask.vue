@@ -26,7 +26,7 @@
 <script>
 import Swal from 'sweetalert2';
 
-function fireAlertSuccess(alertText){
+function fireAlertSuccess(alertText) {
   Swal.fire({
     icon: 'success',
     title: alertText,
@@ -36,7 +36,7 @@ function fireAlertSuccess(alertText){
   })
 }
 
-function fireAlertError(alertText){
+function fireAlertError(alertText) {
   Swal.fire({
     icon: 'error',
     title: alertText,

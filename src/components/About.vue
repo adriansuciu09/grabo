@@ -44,7 +44,7 @@ li {
 }
 
 a {
-  color:whitesmoke;
+  color: whitesmoke;
 }
 
 </style>

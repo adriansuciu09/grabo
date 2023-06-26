@@ -1,14 +1,14 @@
 <template>
-    <button @click ="onClick()" class="btn">Termin hinzufügen</button>
+  <button @click="onClick()" class="btn">Termin hinzufügen</button>
 </template>
 
 <script>
 export default {
-    name: 'Button-one',
-    methods: {
-        onClick() {
-            console.log('Clicked')
-        }
+  name: 'Button-one',
+  methods: {
+    onClick() {
+      console.log('Clicked')
     }
+  }
 }
 </script>

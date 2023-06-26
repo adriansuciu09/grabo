@@ -33,7 +33,7 @@ nav {
   margin: 27px auto 0;
   position: relative;
   width: 60%;
-  min-width: 600px ;
+  min-width: 600px;
   height: 50px;
   background-color: #0d519d;
   border-radius: 15px;
