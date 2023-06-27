@@ -15,7 +15,7 @@ Dies macht ihn zu einem einzigartigen Planer, der vor allem für Outdoor-Aktivit
 Bitte beachten Sie, dass aufgrund unserer REST-API nur Wetterdaten in einem Zeitraum von zwei Wochen in der Zukunft geladen werden können.
 <br>
 <br>
-Zu unserem Outdoor-Planer geht es hier: [Outdoor-Planer](https://stupendous-sherbet-18f496.netlify.app/) 
+Zu unserem Outdoor-Planer geht es hier: [Outdoor-Planer](https://outdoorplaner.netlify.app/) 
 
 ## Sources
 - REST-API - [Open-Meteo](https://open-meteo.com/)
